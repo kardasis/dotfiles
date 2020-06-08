@@ -25,6 +25,7 @@ Plugin 'vim-scripts/ScrollColors'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-dadbod'
+Plugin 'mileszs/ack.vim'
 
 
 " filetype stuff
@@ -268,8 +269,10 @@ map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 " Search {{{
 nnoremap / /\v\c
-nnoremap <leader>sg :Ggrep<space>
-nnoremap <leader>ss :Ggrep '<cword>' <cr>
+let grepprg='Ggrep'
+
+nnoremap <leader>sg :Ack<space>
+nnoremap <leader>ss :Ack '<cword>' <cr>
 " }}}
 
 " File Navigation {{{
@@ -352,3 +355,4 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 
 set iskeyword+=-
+
