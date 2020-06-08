@@ -1,0 +1,19 @@
+alias cdg='cd_to_git_root'
+alias h='history'
+alias ls='ls -G'
+alias lx='ls -lxB'        						 # sort by extension
+alias ll='ls -l'
+alias la='ls -Al'         						 # show hidden files
+alias gitdelmerged='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
+alias dco='docker-compose'
+alias gsur='/usr/bin/git submodule update --recursive'
+alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+alias sz='source ~/.zshrc'
+alias dcodb='dco down && dco build'
+alias rm=trash
+alias hm='hivemind -p 3000 Procfile.dev'
+alias cdkk='cd ~/cottageClass/kidsclub'
+alias cdt='cd ~/trading'
+alias pes='pipenv shell'
+alias path='tr ":" "\n" <<< "$PATH"'
+
