@@ -293,7 +293,7 @@ nnoremap <leader>eg :GFiles --exclude-standard --cached --others<cr>
 nnoremap <leader>ee :NERDTree<cr>
 " open current colorscheme file
 " assumes colorscheme is in a nicely named file
-nnoremap <leader>ec :execute "vsplit ~/.vim/colors/".g:colors_name.".vim"<cr>
+nnoremap <leader>ec :execute "vsplit $DOTFILES/vim/colors/".g:colors_name.".vim"<cr>
 " }}}
 
 " Git {{{
