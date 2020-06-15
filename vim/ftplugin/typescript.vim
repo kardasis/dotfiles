@@ -1,3 +1,5 @@
-typescript setlocal foldmethod=syntax
-typescript setlocal foldlevel=3
+setlocal foldmethod=syntax
+setlocal foldlevel=3
+setlocal formatprg=prettier\ --parser\ typescript
+
 

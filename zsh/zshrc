@@ -47,8 +47,8 @@ if type brew &>/dev/null; then
     compinit
 fi
 
-# nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # run 'nvm use' whenever entering a directory with an nvmrc 
 add-zsh-hook chpwd load-nvmrc

@@ -1,0 +1,15 @@
+snippet rcc "Generate a react class component"
+import React, { Component } from 'react'
+
+type ${1:`!v expand('%:t:r')`}Props = {
+}
+
+export default class ${1:`!v expand('%:t:r')`} extends Component<${1:`!v expand('%:t:r')`}Props, {}> {
+  render() {
+    return (
+      <div>
+      </div>
+    )
+  }
+}
+endsnippet

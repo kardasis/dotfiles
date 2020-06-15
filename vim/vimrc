@@ -23,9 +23,10 @@ Plugin 'tpope/vim-repeat'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'vim-scripts/ScrollColors'
 Plugin 'SirVer/ultisnips'
+Plugin 'epilande/vim-react-snippets'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-dadbod'
-Plugin 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
 
 
 " filetype stuff
@@ -38,6 +39,8 @@ Plugin 'posva/vim-vue'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'gregsexton/MatchTag'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'MaxMEllon/vim-jsx-pretty'
 
 call vundle#end()            " required
 
@@ -60,19 +63,19 @@ endfunction
 
 " Linting {{{
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint', 'prettier'],
-\   'sql': ['sqlint'],
-\   'python': ['pep8'],
-\   'ruby': ['rubocop'],
-\}
+      \   'javascript': ['eslint'],
+      \   'typescript': ['eslint', 'prettier'],
+      \   'sql': ['sqlint'],
+      \   'python': ['pep8'],
+      \   'ruby': ['rubocop'],
+      \}
 let g:ale_fixers = {
-\  'javascript': ['eslint'],
-\  'python': ['autopep8'],
-\  'vue': ['eslint'],
-\  'ruby': ['rubocop'],
-\   'sql': ['sqlfmt'],
-\}
+      \  'javascript': ['eslint'],
+      \  'python': ['autopep8'],
+      \  'vue': ['eslint'],
+      \  'ruby': ['rubocop'],
+      \   'sql': ['sqlfmt'],
+      \}
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_fix_on_save = 1
 let g:ale_javascript_standard_use_global=0
@@ -99,7 +102,7 @@ set wiw=115
 set hlsearch
 set incsearch
 syntax on
-colorscheme brisket
+colorscheme molokai
 
 set guioptions-=r
 set guioptions-=l
@@ -206,7 +209,10 @@ set shiftwidth=2
 set autoindent
 set smartindent
 
-  " format json
+" indent file
+noremap <leader>ai gg=G<cr>
+
+" format json
 nnoremap <leader>jq :%!jq '.'<cr>
 vnoremap <leader>jq :!jq '.'<cr>
 " }}}
@@ -215,12 +221,12 @@ vnoremap <leader>jq :!jq '.'<cr>
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
 endfunction
 " inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
@@ -234,7 +240,7 @@ function! RunFileInCurrentBuffer()
     source /tmp/vimrun
     !rm /tmp/vimrun
   elseif &filetype ==# "sh"
-   execute "!source %"
+    execute "!source %"
   endif
 
 endfunction
@@ -263,16 +269,16 @@ augroup END
 
 " show info for the highlight group under the cursor
 map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
- " }}}
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" }}}
 
 " Search {{{
 nnoremap / /\v\c
 let grepprg='Ggrep'
 
-nnoremap <leader>sg :Ack<space>
-nnoremap <leader>ss :Ack '<cword>' <cr>
+nnoremap <leader>sg :Ggrep<space>
+nnoremap <leader>ss :Ggrep '<cword>' <cr>
 " }}}
 
 " File Navigation {{{
