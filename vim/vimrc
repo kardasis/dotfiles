@@ -277,8 +277,18 @@ map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 nnoremap / /\v\c
 let grepprg='Ggrep'
 
-nnoremap <leader>sg :Ggrep<space>
-nnoremap <leader>ss :Ggrep '<cword>' <cr>
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+command! -bang -nargs=* SSGGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(expand("<cword>")), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+nnoremap <leader>sg :GGrep<space>
+nnoremap <leader>ss :SSGGrep<cr>
 " }}}
 
 " File Navigation {{{
