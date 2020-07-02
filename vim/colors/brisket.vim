@@ -79,6 +79,7 @@ call s:create_palette_color('grey',        { 'gui': '#8F908A', 'cterm': '243' })
 call s:create_palette_color('lightgrey',   { 'gui': '#575b61', 'cterm': '237' })
 call s:create_palette_color('darkgrey',    { 'gui': '#64645e', 'cterm': '239' })
 call s:create_palette_color('warmgrey',    { 'gui': '#75715E', 'cterm': '59'  })
+call s:create_palette_color('blue',        { 'gui': '#0087ff', 'cterm': '33'  })
 
 call s:create_palette_color('pink',        { 'gui': '#f92772', 'cterm': '197' })
 call s:create_palette_color('green',       { 'gui': '#a6e22d', 'cterm': '148' })
@@ -123,6 +124,7 @@ call s:h('SublimeDarkRed',     { 'fg': s:darkred      })
 
 " Default highlight groups (see ':help highlight-default' or http://vimdoc.sourceforge.net/htmldoc/syntax.html#highlight-groups)
 
+call s:h('SpellBad',     { 'fg': s:white, 'bg': s:darkred})
 call s:h('ColorColumn',  { 'bg': s:lightblack2                                             })
 hi! link Conceal SublimeLightGrey
 call s:h('CursorColumn', { 'bg': s:lightblack2                                             })
@@ -199,7 +201,7 @@ hi! link SpecialComment SublimeAqua
 " call s:h('Debug'          {})
 call s:h('Underlined',    { 'format': 'underline' })
 " call s:h('Ignore',        {})
-call s:h('Error',         { 'fg': s:red, 'bg': s:darkred })
+call s:h('Error',         { 'fg': s:black, 'bg': s:blue })
 hi! link Todo           Comment
 
 " Some highlighting groups custom to the Sublime Monokai theme
