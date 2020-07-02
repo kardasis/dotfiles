@@ -71,6 +71,7 @@ let g:ale_linters = {
       \}
 let g:ale_fixers = {
       \  'javascript': ['eslint'],
+      \  'typescript': ['eslint'],
       \  'python': ['autopep8'],
       \  'vue': ['eslint'],
       \  'ruby': ['rubocop'],
@@ -93,6 +94,12 @@ nnoremap <right> <nop>
 nnoremap <left> <nop>
 " }}}
 let mapleader = " "
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+
 " }}}
 
 " Gui settings {{{
@@ -102,7 +109,7 @@ set wiw=115
 set hlsearch
 set incsearch
 syntax on
-colorscheme molokai
+colorscheme brisket
 
 set guioptions-=r
 set guioptions-=l
@@ -132,13 +139,9 @@ set laststatus=2
 " Navigation {{{
 vnoremap H 0
 vnoremap L $
-vnoremap J <PageDown>
-vnoremap K <PageUp>
 
 nnoremap H 0
 nnoremap L $
-nnoremap J <PageDown>
-nnoremap K <PageUp>
 
 onoremap H 0
 onoremap L $
@@ -152,9 +155,6 @@ nnoremap <leader>cf :cfirst<cr>
 nnoremap <leader>cl :clast<cr>
 nnoremap <leader>cj :cnext<cr>
 nnoremap <leader>ck :cprevious<cr>
-
-" help under cursor
-nnoremap <leader>H K
 
 cnoremap jk <C-c> 
 inoremap jk <esc>
@@ -298,6 +298,8 @@ nnoremap <leader>ef :vsplit $DOTFILES/vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 nnoremap <leader>ev :vsplit $DOTFILES/vim/vimrc<cr>
 " open zshrc
 nnoremap <leader>ez :vsplit $DOTFILES/zsh/zshrc<cr>
+" open aliases
+nnoremap <leader>ea :vsplit $DOTFILES/zsh/aliases.zsh<cr>
 " open tmux.config
 nnoremap <leader>et :vsplit $DOTFILES/tmux/tmux.conf<cr>
 " open my personal vim todo list 

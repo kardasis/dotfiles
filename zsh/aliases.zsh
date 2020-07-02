@@ -16,4 +16,4 @@ alias cdkk='cd ~/cottageClass/kidsclub'
 alias cdt='cd ~/trading'
 alias pes='pipenv shell'
 alias path='tr ":" "\n" <<< "$PATH"'
-
+alias v='vim .'
