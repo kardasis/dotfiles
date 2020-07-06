@@ -13,7 +13,7 @@ set rtp+=/usr/local/opt/fzf
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
@@ -26,7 +26,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'epilande/vim-react-snippets'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-dadbod'
-" Plugin 'mileszs/ack.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 " filetype stuff
@@ -41,6 +42,9 @@ Plugin 'gregsexton/MatchTag'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'MaxMEllon/vim-jsx-pretty'
+Plugin 'derekwyatt/vim-scala'
+" Plugin 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+
 
 call vundle#end()            " required
 
