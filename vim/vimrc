@@ -1,6 +1,17 @@
 "ari.kardasis@gmail.com
 
 set nocompatible
+set cmdheight=2
+set updatetime=300
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+" Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
 
 " PLUGINGS {{{
 filetype off                  " required
@@ -17,14 +28,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ycm-core/YouCompleteMe'
+" Plugin 'ycm-core/YouCompleteMe'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'vim-scripts/ScrollColors'
 Plugin 'SirVer/ultisnips'
 Plugin 'epilande/vim-react-snippets'
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-dadbod'
 Plugin 'junegunn/goyo.vim'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
@@ -224,16 +235,30 @@ vnoremap <leader>jq :!jq '.'<cr>
 " Tab completion {{{
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
+" function! InsertTabWrapper()
+"   let col = col('.') - 1
+"   if !col || getline('.')[col - 1] !~ '\k'
+"     return "\<tab>"
+"   else
+"     return "\<c-p>"
+"   endif
+" endfunction
 " inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
+" inoremap <s-tab> <c-n>
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+    
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 " }}}
 
 " Run file {{{
@@ -366,9 +391,9 @@ let g:UltiSnipsSnippetDirectories = [$DOTFILES.'/vim/UltiSnips']
 
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
