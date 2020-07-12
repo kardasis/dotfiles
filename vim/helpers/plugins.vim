@@ -21,7 +21,6 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'skbolton/embark'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'gregsexton/MatchTag'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'fatih/vim-go'
@@ -34,6 +33,8 @@ Plugin 'hdima/python-syntax'
 Plugin 'posva/vim-vue'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
