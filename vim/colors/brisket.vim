@@ -74,7 +74,7 @@ call s:create_palette_color('white',       { 'gui': '#E8E8E3', 'cterm': '252' })
 call s:create_palette_color('black',       { 'gui': '#272822', 'cterm': '234' })
 call s:create_palette_color('lightblack',  { 'gui': '#2D2E27', 'cterm': '235' })
 call s:create_palette_color('lightblack2', { 'gui': '#383a3e', 'cterm': '236' })
-call s:create_palette_color('darkblack',   { 'gui': '#101010', 'cterm': '111' })
+call s:create_palette_color('darkblack',   { 'gui': '#101010', 'cterm': '233' })
 call s:create_palette_color('grey',        { 'gui': '#8F908A', 'cterm': '243' })
 call s:create_palette_color('lightgrey',   { 'gui': '#575b61', 'cterm': '237' })
 call s:create_palette_color('darkgrey',    { 'gui': '#64645e', 'cterm': '239' })
@@ -145,7 +145,7 @@ call s:h('MatchParen',   { 'fg': s:black,       'bg': s:pink                    
 hi! link ModeMsg SublimeYellow
 hi! link MoreMsg SublimeYellow
 hi! link NonText SublimeLightGrey
-call s:h('Normal',       { 'fg': s:white,       'bg': s:darkblack                              })
+call s:h('Normal',       { 'fg': s:white,       'bg': s:darkblack                          })
 call s:h('Pmenu',        { 'fg': s:lightblack,  'bg': s:white                              })
 call s:h('PmenuSbar',    {                                                                 })
 call s:h('PmenuSel',     { 'fg': s:aqua,        'bg': s:black,    'format': 'reverse,bold' })
@@ -763,4 +763,3 @@ hi! link zshTypes    Keyword
 " * Semicolons in `if` blocks are `Keyword`ed in Sublime but not distinct in
 "     Vim
 " * Commands aren't distinct from builtins and keywords in Vim
-highlight Normal ctermbg=234
