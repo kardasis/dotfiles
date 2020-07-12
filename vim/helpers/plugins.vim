@@ -50,3 +50,19 @@ let g:vim_markdown_preview_github=1
 let g:vim_markdown_preview_browser = 'Google Chrome'
 let vim_markdown_preview_hotkey='<C-m>'
 
+
+
+" Snippets {{{
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:UltiSnipsExpandTrigger="<tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"this is a workaround for a bug that puts the snippet in the wrong place
+let g:UltiSnipsSnippetDirectories = [$DOTFILES.'/vim/UltiSnips']
+" }}}
