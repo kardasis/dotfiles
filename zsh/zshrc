@@ -3,6 +3,7 @@
 export DOTFILES=$HOME/dotfiles
 alias vim='vim -u $DOTFILES/vim/vimrc'
 alias tmux='tmux -f $DOTFILES/tmux/tmux.conf'
+ln -sf $DOTFILES/vim/coc-settings.json $HOME/.config/nvim/coc-settings.json
 
 export GOPATH=$HOME/go
 export FPATH=$FPATH:$DOTFILES/zsh/functions

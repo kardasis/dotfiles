@@ -1,5 +1,4 @@
 "ari.kardasis@gmail.com
-
 " General setup
 set nocompatible
 set cmdheight=2
@@ -139,5 +138,3 @@ command! -bang -nargs=* SSGGrep
 " shut off bracketed paste for system clipboard
 set t_BE=
 " }}}
-
-
