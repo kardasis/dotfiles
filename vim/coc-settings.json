@@ -1,3 +1,4 @@
 {
-"snippets.userSnippetsDirectory": "$DOTFILES/vim/snippets"
+"snippets.userSnippetsDirectory": "$DOTFILES/vim/snippets",
+"coc.preferences.jumpCommand": "vsplit"
 }

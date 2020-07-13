@@ -47,7 +47,7 @@ nnoremap <leader>f  <Plug>(coc-format-selected)
 
 " File Navigation {{{
 " open snippet file for current filetype
-nnoremap <leader>es :UltiSnipsEdit<cr>
+nnoremap <leader>es :CocCommand snippets.editSnippets<cr>
 " open filetype for current filetype
 nnoremap <leader>ef :vsplit $DOTFILES/vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 " open vimrc
