@@ -28,6 +28,7 @@ Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'fatih/vim-go'
 Plugin 'honza/vim-snippets'
+Plugin 'prettier/vim-prettier'
 
 " filetype stuff
 Plugin 'JamshedVesuna/vim-markdown-preview'
@@ -67,4 +68,9 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+" }}}
+
+" vim-go {{{
+" let g:go_def_mode='gopls'
+" let g:go_def_mod_mode='godef'
 " }}}

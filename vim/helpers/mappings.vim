@@ -43,6 +43,8 @@ vnoremap <leader>jq :!jq '.'<cr>
 
 xnoremap <leader>f  <Plug>(coc-format-selected)
 nnoremap <leader>f  <Plug>(coc-format-selected)
+
+nnoremap <leader>fp :Prettier<cr>
 " }}}
 
 " File Navigation {{{
@@ -74,6 +76,9 @@ nnoremap <leader>ec :execute "vsplit $DOTFILES/vim/colors/".g:colors_name.".vim"
 " project search
 nnoremap <leader>sg :GGrep<space>
 nnoremap <leader>ss :SSGGrep<cr>
+
+" reload vimrc
+nnoremap <leader>vv :source $MYVIMRC<cr>
 " }}}
 
 " Git {{{

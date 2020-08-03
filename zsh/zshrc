@@ -4,8 +4,10 @@ export DOTFILES=$HOME/dotfiles
 alias vim='vim -u $DOTFILES/vim/vimrc'
 alias tmux='tmux -f $DOTFILES/tmux/tmux.conf'
 ln -sf $DOTFILES/vim/coc-settings.json $HOME/.config/nvim/coc-settings.json
+export MYVIMRC=$DOTFILES/vim/vimrc
 
 export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
 export FPATH=$FPATH:$DOTFILES/zsh/functions
 
 cdpath=($HOME/repos $HOME/repos/kardasis $GOPATH/src/github.com/kardasis $HOME)

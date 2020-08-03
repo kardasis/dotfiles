@@ -124,7 +124,7 @@ call s:h('SublimeDarkRed',     { 'fg': s:darkred      })
 
 " Default highlight groups (see ':help highlight-default' or http://vimdoc.sourceforge.net/htmldoc/syntax.html#highlight-groups)
 
-call s:h('SpellBad',     { 'fg': s:white, 'bg': s:darkred})
+call s:h('SpellBad',     { 'fg': s:white, 'bg': s:red})
 call s:h('ColorColumn',  { 'bg': s:lightblack2                                             })
 hi! link Conceal SublimeLightGrey
 call s:h('CursorColumn', { 'bg': s:lightblack2                                             })
