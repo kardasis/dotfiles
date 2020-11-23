@@ -22,7 +22,7 @@ endfunction
 
 setlocal foldexpr=MarkdownLevel()  
 setlocal foldmethod=expr  
+setlocal foldlevel=5
+
 onoremap ih :<c-u>execute "normal! ?^\\(==\\+\\\|--\\+\\)$\r:nohlsearch\rkvg_"<cr>
 
-" alway preview markdown files on save
- autocmd bufwritepost *.md :execute "call Vim_Markdown_Preview()"

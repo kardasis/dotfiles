@@ -50,7 +50,10 @@ set rtp+=/usr/local/opt/fzf
 
 let g:coc_global_extensions = [
       \ 'coc-snippets',
-      \ 'coc-tsserver'
+      \ 'coc-tsserver',
+      \ 'coc-metals',
+      \ 'coc-vimlsp',
+      \ 'coc-java',
       \ ]
 
 let g:vim_markdown_preview_github=1
@@ -73,4 +76,8 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " vim-go {{{
 " let g:go_def_mode='gopls'
 " let g:go_def_mod_mode='godef'
+" }}}
+
+" nerdtree {{{
+:let g:NERDTreeWinSize=45
 " }}}

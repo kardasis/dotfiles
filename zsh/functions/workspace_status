@@ -1,0 +1,21 @@
+#! /bin/bash
+
+# Script for checking the git status of a bunch of repos in a workspace
+# Any dirty workspaces will print
+
+bold=$(tput setaf 2)
+normal=$(tput sgr0)
+
+hit=false
+for d in $1/*/; do 
+  if [ -n "$(git -C $d status --porcelain)" ]; then
+    hit=true
+     echo "${bold}$(basename $d)${normal}"
+     git -C $d status -sb
+     echo ""
+  fi
+done
+ 
+ if [ "$hit" = false ] ; then
+   echo "All repos clean"
+ fi

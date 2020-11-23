@@ -211,6 +211,15 @@ prompt_virtualenv() {
   fi
 }
 
+# AWS:
+# - Show current AWS account from isengard CLI
+prompt_aws() {
+  local aws_profile="$AWS_PROFILE"
+  if [[ -n $aws_profile ]]; then
+    prompt_segment red black "(`basename $aws_profile`)"
+  fi
+}
+
 # Status:
 # - was there an error
 # - am I root
@@ -233,6 +242,7 @@ prompt_time() {
 build_prompt() {
   RETVAL=$?
   prompt_status
+  prompt_aws
   prompt_virtualenv
   prompt_dir
   prompt_git

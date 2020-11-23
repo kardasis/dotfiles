@@ -6,9 +6,17 @@ set autoread
 set rtp+=$DOTFILES/vim
 
 " source all the helper files
-for f in split(glob('$DOTFILES/vim/helpers/*.vim'), '\n')
-    exec 'source' f
-endfor
+  for f in split(glob('$DOTFILES/vim/helpers/**/*.vim'), '\n')
+      exec 'source' f
+  endfor
+" function! s:SourceDirectory(d)
+"   for f in split(glob(a:d.'**/*.vim'), '\n')
+"       exec 'source' f
+"   endfor
+"   for d in split(glob(), '\n')
+"     call s:SourceDirectory(d)
+" endfunction
+" call s:SourceDirectory('$DOTFILES/vim/helpers')
 
 " adjust the behavior of backspace key in insert mode
 set backspace=2
@@ -56,22 +64,6 @@ set laststatus=2
 " Windows and Tabs {{{
 set splitbelow
 set splitright
-
-
-function! OpenBufferInNewTab()
-  let s:originalTab = tabpagenr()    |" find the current tab number
-  echo s:originalTab
-  if tabpagewinnr(s:originalTab, '$') ==# 1
-    return
-  endif
-  let s:buf = bufnr("%")             |" find buffer number
-  tabnew                             |" open new tab
-  let s:newTab = tabpagenr()
-  :execute "b".s:buf          |" open buffer in new tab
-  :execute s:originalTab."tabnext"   |" return to original tab
-  :q                                 |" close window
-  :execute s:newTab."tabnext"        |" return to new tab
-endfunction
 " }}}
 
 " Indentation {{{

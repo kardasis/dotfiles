@@ -56,7 +56,9 @@ nnoremap <leader>ef :vsplit $DOTFILES/vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
 nnoremap <leader>ev :vsplit $DOTFILES/vim/vimrc<cr>
 " open zshrc
 nnoremap <leader>ez :vsplit $DOTFILES/zsh/zshrc<cr>
-" open aliases
+" open this mapping file
+nnoremap <leader>em :vsplit $DOTFILES/vim/helpers/mappings.vim<cr>
+" open zsh aliases
 nnoremap <leader>ea :vsplit $DOTFILES/zsh/aliases.zsh<cr>
 " open tmux.config
 nnoremap <leader>et :vsplit $DOTFILES/tmux/tmux.conf<cr>
@@ -72,6 +74,8 @@ nnoremap <leader>eg :GFiles --exclude-standard --cached --others<cr>
 nnoremap <leader>ee :NERDTree<cr>
 " assumes colorscheme is in a nicely named file
 nnoremap <leader>ec :execute "vsplit $DOTFILES/vim/colors/".g:colors_name.".vim"<cr>
+" open today's daily in a split
+nnoremap <leader>ey :call GoToDaily()<cr>
 
 " project search
 nnoremap <leader>sg :GGrep<space>
