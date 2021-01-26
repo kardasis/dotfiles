@@ -22,6 +22,9 @@ inoremap jk <esc>
 
 " buffer search
 nnoremap / /\v\c
+
+" move to next uppercase character
+nnoremap <c-k> :<c-u>call search('\u')<cr>
 " }}}
 
 " quickfix {{{

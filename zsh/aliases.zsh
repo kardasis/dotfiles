@@ -1,6 +1,5 @@
 alias cdg='cd_to_git_root'
 alias wss='workspace_status'
-alias h='history'
 alias ls='ls -Gh'
 alias lx='ls -lxB'        						 # sort by extension
 alias ll='ls -l'
@@ -14,6 +13,7 @@ alias path='tr ":" "\n" <<< "$PATH"'
 alias v='nvim .'
 alias bb='brazil-build'
 alias bbr='brazil-build release'
+alias bbg='brazil-build generate'
 alias bbst='brazil-build scala-test'
 alias bws='brazil workspace'
 alias bre='brazil-runtime-exec'
@@ -21,4 +21,4 @@ alias mce-attach-cr='~/brazil-workplace/MCEOpsTools/src/MCEOpsTools/bin/attach-c
 alias mce-cr='~/brazil-workplace/MCEOpsTools/src/MCEOpsTools/bin/mce-cr -o'
 alias cdm='cd `ls -d /Volumes/workplace/brazil-workplace/MCE/src/* | fzf`'
 alias beep="osascript -e 'beep 5'"                                      # make a beepy noise
-
+alias h='fzf_history'

@@ -41,6 +41,8 @@ export CLICOLOR=1
 export LSCOLORS=Cxfxcxdxbxegedabagacad
 
 # very large history
+#
+export HISTCONTROL=ignoredups
 HISTFILESIZE=1000000000 HISTSIZE=1000000
 
 # Homebrew completion
@@ -66,7 +68,7 @@ __git_files () {
     _wanted files expl 'local files' _files     
 }
 
-autoload cd_to_git_root load-nvmrc workspace_status
+autoload cd_to_git_root load-nvmrc workspace_status fzf_history
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
