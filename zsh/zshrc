@@ -76,5 +76,8 @@ fi
 
 setopt auto_cd
 
-# enable autocomplete for aws 
-complete -C '/usr/local/bin/aws_completer' aws
+autoload bashcompinit && bashcompinit
+# enable autocomplete for aws for bash
+if command -v complete &> /dev/null; then
+  complete -C '/usr/local/bin/aws_completer' aws
+fi
