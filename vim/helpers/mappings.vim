@@ -113,4 +113,11 @@ nnoremap <F2> :set invpaste paste?<CR>
 
 " copy the current file path and line number into the 'l' register
 nnoremap <leader>yy :let @l=join([expand('%'),  line(".")], ':')<cr>
+
+" Paste line vs character wise
+nmap <Leader>lP :call Paste(v:register, "l", "P")<CR>
+nmap <Leader>lp :call Paste(v:register, "l", "p")<CR>
+nmap <Leader>cP :call Paste(v:register, "v", "P")<CR>
+nmap <Leader>cp :call Paste(v:register, "v", "p")<CR>
 " }}}
+
