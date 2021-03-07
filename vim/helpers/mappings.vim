@@ -115,9 +115,9 @@ nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <leader>yy :let @l=join([expand('%'),  line(".")], ':')<cr>
 
 " Paste line vs character wise
-nmap <Leader>lP :call Paste(v:register, "l", "P")<CR>
-nmap <Leader>lp :call Paste(v:register, "l", "p")<CR>
-nmap <Leader>cP :call Paste(v:register, "v", "P")<CR>
-nmap <Leader>cp :call Paste(v:register, "v", "p")<CR>
+nmap <Leader>Pl :call Paste(v:register, "l", "P")<CR>
+nmap <Leader>pl :call Paste(v:register, "l", "p")<CR>
+nmap <Leader>Pc :call Paste(v:register, "v", "P")<CR>
+nmap <Leader>pc :call Paste(v:register, "v", "p")<CR>
 " }}}
 
