@@ -121,3 +121,6 @@ nmap <Leader>Pc :call Paste(v:register, "v", "P")<CR>
 nmap <Leader>pc :call Paste(v:register, "v", "p")<CR>
 " }}}
 
+" Paste over visual selection without losing register contents
+vnoremap p "_dp
+
