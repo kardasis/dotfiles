@@ -57,7 +57,7 @@ let g:coc_global_extensions = [
       \ ]
 
 let g:vim_markdown_preview_github=1
-let g:vim_markdown_preview_browser = 'Google Chrome'
+let g:vim_markdown_preview_browser = 'Firefox'
 let vim_markdown_preview_hotkey='<C-m>'
 
 " coc-snipets {{{
