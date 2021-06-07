@@ -3,7 +3,6 @@
 export DOTFILES=$HOME/dotfiles
 alias vim='vim -u $DOTFILES/vim/vimrc'
 alias tmux='tmux -f $DOTFILES/tmux/tmux.conf'
-ln -sf $DOTFILES/vim/coc-settings.json $HOME/.config/nvim/coc-settings.json
 export MYVIMRC=$DOTFILES/vim/vimrc
 
 export GOPATH=$HOME/go
@@ -31,10 +30,6 @@ source $DOTFILES/zsh/aliases.zsh
 source $DOTFILES/zsh/vi-bindings.zsh
 source $DOTFILES/zsh/path.zsh
 source $DOTFILES/zsh/app-variables.zsh
-
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 
 # color settings
 export CLICOLOR=1
@@ -72,6 +67,9 @@ autoload cd_to_git_root load-nvmrc workspace_status fzf_history
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+fi
+if command -v rbenv 1>/dev/null 2>&1; then
+  eval "$(rbenv init -)"
 fi
 
 setopt auto_cd

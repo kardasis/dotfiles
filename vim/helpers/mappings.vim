@@ -44,9 +44,6 @@ noremap <leader>ai gg=G<cr>
 nnoremap <leader>jq :%!jq '.'<cr>
 vnoremap <leader>jq :!jq '.'<cr>
 
-xnoremap <leader>f  <Plug>(coc-format-selected)
-nnoremap <leader>f  <Plug>(coc-format-selected)
-
 nnoremap <leader>fp :Prettier<cr>
 " }}}
 

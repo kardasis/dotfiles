@@ -1,5 +1,0 @@
-{
-"snippets.userSnippetsDirectory": "$DOTFILES/vim/snippets",
-"coc.preferences.jumpCommand": "vsplit",
-"java.trace.server": "verbose"
-}

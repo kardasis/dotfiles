@@ -1,4 +1,3 @@
-"ari.kardasis@gmail.com
 " General setup
 set nocompatible
 set autoread
@@ -9,14 +8,6 @@ set rtp+=$DOTFILES/vim
   for f in split(glob('$DOTFILES/vim/helpers/**/*.vim'), '\n')
       exec 'source' f
   endfor
-" function! s:SourceDirectory(d)
-"   for f in split(glob(a:d.'**/*.vim'), '\n')
-"       exec 'source' f
-"   endfor
-"   for d in split(glob(), '\n')
-"     call s:SourceDirectory(d)
-" endfunction
-" call s:SourceDirectory('$DOTFILES/vim/helpers')
 
 " adjust the behavior of backspace key in insert mode
 set backspace=2
@@ -116,3 +107,5 @@ command! -bang -nargs=* SSGGrep
 " shut off bracketed paste for system clipboard
 set t_BE=
 " }}}
+"
+"

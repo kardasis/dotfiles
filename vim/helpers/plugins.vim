@@ -20,15 +20,14 @@ Plugin 'vim-scripts/ScrollColors'
 Plugin 'epilande/vim-react-snippets'
 Plugin 'tpope/vim-dadbod'
 Plugin 'junegunn/goyo.vim'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'skbolton/embark'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'gregsexton/MatchTag'
 Plugin 'MaxMEllon/vim-jsx-pretty'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'fatih/vim-go'
 Plugin 'honza/vim-snippets'
 Plugin 'prettier/vim-prettier'
+Plugin 'tpope/rails-vim'
 
 " filetype stuff
 Plugin 'JamshedVesuna/vim-markdown-preview'
@@ -48,35 +47,9 @@ filetype plugin indent on    " required
 " setup and config for plugins
 set rtp+=/usr/local/opt/fzf
 
-let g:coc_global_extensions = [
-      \ 'coc-snippets',
-      \ 'coc-tsserver',
-      \ 'coc-metals',
-      \ 'coc-vimlsp',
-      \ 'coc-java',
-      \ ]
-
 let g:vim_markdown_preview_github=1
 let g:vim_markdown_preview_browser = 'Firefox'
 let vim_markdown_preview_hotkey='<C-m>'
-
-" coc-snipets {{{
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-" }}}
-
-" vim-go {{{
-" let g:go_def_mode='gopls'
-" let g:go_def_mod_mode='godef'
-" }}}
 
 " nerdtree {{{
 :let g:NERDTreeWinSize=45
