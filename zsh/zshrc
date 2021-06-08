@@ -68,14 +68,12 @@ autoload cd_to_git_root load-nvmrc workspace_status fzf_history
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-if command -v rbenv 1>/dev/null 2>&1; then
-  eval "$(rbenv init -)"
-fi
-
 setopt auto_cd
-
 autoload bashcompinit && bashcompinit
 # enable autocomplete for aws for bash
 if command -v complete &> /dev/null; then
   complete -C '/usr/local/bin/aws_completer' aws
 fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
