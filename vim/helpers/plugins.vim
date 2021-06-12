@@ -27,7 +27,7 @@ Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'fatih/vim-go'
 Plugin 'honza/vim-snippets'
 Plugin 'prettier/vim-prettier'
-Plugin 'tpope/rails-vim'
+Plugin 'tpope/vim-rails'
 
 " filetype stuff
 Plugin 'JamshedVesuna/vim-markdown-preview'
@@ -48,7 +48,7 @@ filetype plugin indent on    " required
 set rtp+=/usr/local/opt/fzf
 
 let g:vim_markdown_preview_github=1
-let g:vim_markdown_preview_browser = 'Firefox'
+let g:vim_markdown_preview_browser = 'Google Chrome'
 let vim_markdown_preview_hotkey='<C-m>'
 
 " nerdtree {{{
