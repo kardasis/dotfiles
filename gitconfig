@@ -1,0 +1,16 @@
+[user]
+	name = Ari Kardasis
+	email = ari.kardasis@gmail.com
+[core]
+	excludesfile = /Users/arikardasis/.gitignore
+[branch]
+	autosetupmerge = always
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[push]
+	default = current
+[color "diff"]
+	meta = black green blink

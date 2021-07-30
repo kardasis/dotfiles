@@ -78,8 +78,10 @@ nnoremap <leader>ec :execute "vsplit $DOTFILES/vim/colors/".g:colors_name.".vim"
 nnoremap <leader>ey :call GoToDaily()<cr>
 
 " project search
-nnoremap <leader>sg :GGrep<space>
-nnoremap <leader>ss :SSGGrep<cr>
+nnoremap <leader>sg :Ag<space>
+nnoremap <leader>sgf :GGrep<space>
+nnoremap <leader>ssf :SSGGrep<cr>
+nnoremap <leader>ss :grep! "\b<C-R><C-W>\b"<CR>:vert copen<CR> :vertical resize 80<CR>
 
 " reload vimrc
 nnoremap <leader>vv :source $MYVIMRC<cr>

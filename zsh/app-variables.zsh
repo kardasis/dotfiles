@@ -1,5 +1,10 @@
 export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
-export EDITOR='vim'
+if type "nvim" > /dev/null; then
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
+
 export TERM=xterm-256color
 export PGDATA=/usr/local/var/postgres
 

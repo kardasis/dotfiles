@@ -4,6 +4,7 @@ augroup VimFtPlugin
 augroup end
 
 nnoremap <buffer> <leader>/ I"<space><esc>
+nnoremap <buffer> <leader>r :source %<cr>
 setlocal foldmethod=marker
 setlocal foldlevel=4
 
