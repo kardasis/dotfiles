@@ -20,14 +20,27 @@ noremap L $
 cnoremap jk <C-c>
 inoremap jk <esc>
 
-" buffer search
-nnoremap / /\v\c
-
 " move to next uppercase character
-nnoremap <c-k> :<c-u>call search('\u')<cr>
+nnoremap <c-k> :<c-u>call search('[A-Z_]')<cr>
 " }}}
 
-" quickfix {{{
+" Overriding existing commands {{{
+" Paste over visual selection without losing register contents
+vnoremap p "_dp
+
+" Move search to center of window
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" }}}
+"
+" Misc {{{
+" buffer search
+nnoremap / /\v\c
+" cancel search
+nnoremap <leader>sn :noh<cr>
+" }}}
+
+" quickfix {{{ <leader>q-
 nnoremap <leader>co :vert copen<cr> :vertical resize 80<cr>
 nnoremap <leader>cc :cclose<cr>
 nnoremap <leader>cf :cfirst<cr>
@@ -36,18 +49,18 @@ nnoremap <leader>cj :cnext<cr>
 nnoremap <leader>ck :cprevious<cr>
 " }}}
 
-" Formatting {{{
+" Formatting {{{ <leader>f-
 " indent file
-noremap <leader>ai gg=G<cr>
+noremap <leader>fi gg=G<cr>
 
 " format json
-nnoremap <leader>jq :%!jq '.'<cr>
-vnoremap <leader>jq :!jq '.'<cr>
+nnoremap <leader>fj :%!jq '.'<cr>
+vnoremap <leader>fj :!jq '.'<cr>
 
 nnoremap <leader>fp :Prettier<cr>
 " }}}
 
-" File Navigation {{{
+" File Navigation {{{ <leader>e-
 " open snippet file for current filetype
 nnoremap <leader>es :CocCommand snippets.editSnippets<cr>
 " open filetype for current filetype
@@ -71,23 +84,34 @@ nnoremap <leader>ed :vsplit .env<cr>
 " fzf file searches
 nnoremap <leader>eg :GFiles --exclude-standard --cached --others<cr>
 " open current colorscheme file
-nnoremap <leader>ee :NERDTree<cr>
 " assumes colorscheme is in a nicely named file
 nnoremap <leader>ec :execute "vsplit $DOTFILES/vim/colors/".g:colors_name.".vim"<cr>
 " open today's daily in a split
 nnoremap <leader>ey :call GoToDaily()<cr>
+" open plugins file
+nnoremap <leader>ep :vsplit $DOTFILES/vim/helpers/plugins.vim<cr>
 
-" project search
-nnoremap <leader>sg :Ag<space>
-nnoremap <leader>sgf :GGrep<space>
-nnoremap <leader>ssf :SSGGrep<cr>
-nnoremap <leader>ss :grep! "\b<C-R><C-W>\b"<CR>:vert copen<CR> :vertical resize 80<CR>
-
-" reload vimrc
-nnoremap <leader>vv :source $MYVIMRC<cr>
+nnoremap <leader>ee :NERDTree<cr>
+nnoremap <leader>eb :NERDTreeFind<cr>
 " }}}
 
-" Git {{{
+" project search {{{ <leader>s-
+nnoremap <leader>sg :Ag<space>
+nnoremap <leader>sfg :GGrep<space>
+nnoremap <leader>sfs :SSGGrep<cr>
+nnoremap <leader>ss :grep! "\b<C-R><C-W>\b"<CR>:vert copen<CR> :vertical resize 80<CR>
+
+" }}}
+"
+
+" Running things {{{ <leader>r
+" reload vimrc
+nnoremap <leader>rv :source $MYVIMRC<cr>
+
+" filetype specific 'run' commands
+" }}}
+
+" Git {{{ <leader>g-
 " vim-fugitive commands
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gs :Git<cr>
@@ -119,7 +143,4 @@ nmap <Leader>pl :call Paste(v:register, "l", "p")<CR>
 nmap <Leader>Pc :call Paste(v:register, "v", "P")<CR>
 nmap <Leader>pc :call Paste(v:register, "v", "p")<CR>
 " }}}
-
-" Paste over visual selection without losing register contents
-vnoremap p "_dp
 

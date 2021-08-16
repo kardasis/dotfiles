@@ -1,4 +1,3 @@
-Goyo
 set linebreak
 nnoremap <buffer> j gj
 nnoremap <buffer> k gk

@@ -2,6 +2,8 @@
 set nocompatible
 set autoread
 
+
+runtime macros/matchit.vim
 set rtp+=$DOTFILES/vim
 
 " source all the helper files

@@ -1,10 +1,11 @@
 alias cdg='cd_to_git_root'
 alias wss='workspace_status'
-alias ls='ls -Gh'
-alias lx='ls -lxB'        						 # sort by extension
-alias ll='ls -l'
-alias la='ls -Al'         						 # show hidden files
-alias gitdelmerged='git branch --merged | egrep -v "(^\*|$git_main_branch)|dev)" | xargs git branch -d'
+if type exa &>/dev/null; then
+  alias ls='exa'
+  alias lst='exa -alT'         						 # show hidden files
+fi
+alias la='ls -al' # all files, long listing.   regardless of exa or not
+alias gitdelmerged='git branch --merged | egrep -v "(^\*|main|master|develop|dev)" | xargs git branch -d'
 alias dco='docker-compose'
 alias sz='source ~/.zshrc'
 alias rm=trash
@@ -22,7 +23,7 @@ alias mce-cr='~/brazil-workplace/MCEOpsTools/src/MCEOpsTools/bin/mce-cr -o'
 alias cdm='cd `ls -d /Volumes/workplace/brazil-workplace/MCE/src/* | fzf`'
 alias beep="osascript -e 'beep 5'"                                      # make a beepy noise
 alias h='fzf_history'
-alias grid='git rebase -i develop'
+alias grim='git rebase -i main'
 
 # this requires brew and brew installed ctags
 if type brew &>/dev/null; then
