@@ -40,21 +40,6 @@ set guioptions-=l
 " wildmenu
 set wildchar=<Tab> wildmenu wildmode=full
 
-" REPLACED BY AIRLINE
-" " Statusline {{{
-" set statusline=%f         " Path to the file
-" set statusline+=\ -\      " Separator
-" set statusline+=%y        " Filetype
-" set statusline+=%m
-" set statusline+=%=        " Switch to the right side
-" set statusline+=%c\ \     " Current column
-" set statusline+=\[%5l     " Current line
-" set statusline+=/         " Separator
-" set statusline+=%L\ \]    " Total lines
-" set statusline+=\ -\      " Separator
-" set statusline+=%{FugitiveStatusline()}
-" set laststatus=2
-" " }}}
 
 " Windows and Tabs {{{
 set splitbelow

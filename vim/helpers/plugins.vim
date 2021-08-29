@@ -26,16 +26,17 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
-Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/argtextobj.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kana/vim-textobj-user'
+Plugin 'dense-analysis/ale'
 
 " neovim pulgins {{{
 if has('nvim')
-  Plugin 'neovim/nvim-lspconfig'
+  " Plugin 'neovim/nvim-lspconfig'
 endif
 " }}}
 
@@ -57,11 +58,18 @@ let g:NERDTreeWinSize=45
 " }}}
 
 " airline {{{
-let g:airline_detect_paste=1
-let g:airline_powerline_fonts = 1
-let g:airline_section_z = '%3c [%4l/%L]'   " replace default position display
+" let g:airline_detect_paste=1
+" let g:airline_powerline_fonts = 1
+" let g:airline_section_z = '%3c [%4l/%L]'   " replace default position display
 
 " let x = g:airline_section_b
 " let g:airline_section_b = g:airline_section_c
 " let g:airline_section_c = x
+" }}}
+"
+" ALE {{{
+nnoremap <leader>kj :ALENextWrap<cr>
+nnoremap <leader>kk :ALEPreviousWrap<cr>
+nnoremap <leader>kf :ALEFix<cr>
+
 " }}}

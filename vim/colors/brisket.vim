@@ -154,8 +154,7 @@ hi! link Question SublimeYellow
 call s:h('Search',       { 'format': 'reverse,underline'                                   })
 hi! link SignColumn SublimeLightBlack
 hi! link SpecialKey SublimeLightBlack2
-call s:h('StatusLine',   { 'fg': s:black,       'bg': s:pink                               })
-call s:h('StatusLineNC', { 'fg': s:white,       'bg': s:warmgrey                           })
+
 call s:h('TabLine',      { 'fg': s:white,       'bg': s:darkgrey                           })
 call s:h('TabLineFill',  { 'fg': s:grey,        'bg': s:darkgrey                           })
 call s:h('TabLineSel',   { 'fg': s:brightwhite, 'bg': s:white                              })
@@ -163,6 +162,28 @@ hi! link Title SublimeYellow
 call s:h('VertSplit',    { 'fg': s:darkgrey,    'bg': s:darkgrey                           })
 call s:h('Visual',       { 'fg': s:black,        'bg': s:pink                              })
 hi! link WarningMsg SublimeRed
+
+call s:h('StatusLine',   { 'fg': s:black,       'bg': s:warmgrey                               })
+call s:h('StatusLineNC', { 'fg': s:white,       'bg': s:warmgrey                           })
+call s:h('User1', { 'fg': s:green,       'bg': s:white                           })
+" call s:h('User1NC', { 'fg': s:green,       'bg': s:yellow                           })
+
+call s:h('StatusLineRed',   { 'fg': s:black, 'bg': s:red                              })
+call s:h('StatusLineBlue',   { 'fg': s:black, 'bg': s:blue                              })
+call s:h('StatusLineBlueGreen',   { 'fg': s:blue, 'bg': s:green                              })
+call s:h('StatusLineGreen',   { 'fg': s:black, 'bg': s:green                              })
+call s:h('StatusLineGreenRed',   { 'fg': s:green, 'bg': s:red                              })
+call s:h('StatusLineRedGreen',   { 'fg': s:red, 'bg': s:green                              })
+call s:h('StatusLineYellow',   { 'fg': s:black, 'bg': s:yellow                              })
+call s:h('StatusLinePurple',   { 'fg': s:black, 'bg': s:purple                              })
+call s:h('StatusLineBlack',   { 'fg': s:white, 'bg': s:black                              })
+call s:h('StatusLineWhite',   { 'fg': s:black, 'bg': s:white                              })
+call s:h('StatusLinePink',   { 'fg': s:black, 'bg': s:pink                              })
+
+call s:h('StatusLinePurpleBlue',   { 'fg': s:purple, 'bg': s:blue                              })
+call s:h('StatusLineWhiteBlue',   { 'fg': s:white, 'bg': s:blue                              })
+call s:h('StatusLinePinkBlue',   { 'fg': s:pink, 'bg': s:blue                              })
+call s:h('StatusLineBlackBlue',   { 'fg': s:black, 'bg': s:blue                              })
 
 " Generic Syntax Highlighting (see reference: 'NAMING CONVENTIONS' at http://vimdoc.sourceforge.net/htmldoc/syntax.html#group-name)
 
