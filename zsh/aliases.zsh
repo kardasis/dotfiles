@@ -1,14 +1,15 @@
-alias cdg='cd_to_git_root'
-alias wss='workspace_status'
 if type exa &>/dev/null; then
   alias ls='exa'
   alias lst='exa -alT'         						 # show hidden files
 fi
+if type trash &>/dev/null; then
+  alias rm=trash
+fi
+alias cdg='cd_to_git_root'
 alias la='ls -al' # all files, long listing.   regardless of exa or not
 alias gitdelmerged='git branch --merged | egrep -v "(^\*|main|master|develop|dev)" | xargs git branch -d'
 alias dco='docker-compose'
 alias sz='source ~/.zshrc'
-alias rm=trash
 alias pes='pipenv shell'
 alias path='tr ":" "\n" <<< "$PATH"'
 alias v="$EDITOR ."
