@@ -7,6 +7,7 @@ runtime macros/matchit.vim
 set rtp+=$DOTFILES/vim
 
 " source all the helper files
+" these should be moved into plugins?
   for f in split(glob('$DOTFILES/vim/helpers/**/*.vim'), '\n')
       exec 'source' f
   endfor
@@ -107,4 +108,4 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 " shut off bracketed paste for system clipboard
 set t_BE=
 " }}}
-"
+

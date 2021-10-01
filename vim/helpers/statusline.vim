@@ -1,16 +1,112 @@
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+function! s:StatuslineStart()
+  let s:data = {
+        \ 'left': [],
+        \ 'center': [],
+        \ 'right': []
+        \ }
 endfunction
 
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  if strlen(l:branchname) > 0
-    return l:branchname
+function! s:AddTab(group, text, position)
+  call add(s:data[a:position], {'group': a:group, 'text': a:text})
+endfunction
+
+function! HiGroupColor(group, term)
+  let output = execute('hi ' . a:group)
+  return matchstr(output, a:term.'=\zs\S*')
+endfunction
+
+function! s:TransitionHighlightGroup(fg_group, bg_group)
+  let l:fg_color = HiGroupColor(a:fg_group, 'ctermbg')
+  let l:bg_color = HiGroupColor(a:bg_group, 'ctermbg')
+  let groupname = l:fg_color[1:].l:bg_color[1:]
+  execute 'highlight '.groupname.' ctermfg='.l:fg_color.' ctermbg='.l:bg_color
+  return groupname
+endfunction
+
+" build the statusline string
+function! s:StatuslineEnd()
+  let l:sl = ''
+  for i in range(len(s:data['left']))
+    let item = s:data['left'][i]
+    let l:sl .= '%#'.item['group'].'#'.item['text']
+    if i < len(s:data['left']) -1
+      let next_item = s:data['left'][i+1]
+      let transition_group = s:TransitionHighlightGroup(item['group'], next_item['group'])
+      let l:sl .= '%#'.transition_group.'#'
+    elseif len(s:data['center'])>0
+      let next_item = s:data['center'][0]
+      let transition_group = s:TransitionHighlightGroup(item['group'], next_item['group'])
+      let l:sl .= '%#'.transition_group.'#'
+    elseif len(s:data['right'])>0
+      let next_item = s:data['right'][0]
+      let transition_group = s:TransitionHighlightGroup(item['group'], next_item['group'])
+      let l:sl .= '%#'.transition_group.'#'
+    endif
+  endfor
+
+  let l:sl .= '%='
+
+  for i in range(len(s:data['center']))
+    let item = s:data['center'][i]
+    let l:sl .= '%#'.item['group'].'#'.item['text']
+  endfor
+
+  let l:sl .= '%='
+
+  for i in range(len(s:data['right']))
+    let item = s:data['right'][i]
+    if i > 0
+      let prev_item = s:data['right'][i-1]
+      let transition_group = s:TransitionHighlightGroup(item['group'], prev_item['group'])
+      let l:sl .= '%#'.transition_group.'#'
+    elseif len(s:data['center']) > 0
+      let prev_item = s:data['center'][-1]
+      let transition_group = s:TransitionHighlightGroup(item['group'], prev_item['group'])
+      let l:sl .= '%#'.transition_group.'#'
+    elseif len(s:data['left']) > 0
+      let prev_item = s:data['left'][-1]
+      let transition_group = s:TransitionHighlightGroup(item['group'], prev_item['group'])
+      let l:sl .= '%#'.transition_group.'#'
+    endif
+    let l:sl .= '%#'.item['group'].'#'.item['text']
+  endfor
+  execute ':setlocal statusline=' .  substitute(l:sl, ' ', '\\ ', "g")
+endfunction
+
+function! s:statusline_nerd_tree()
+  return '%{exists(''b:NERDTree'')?b:NERDTree.root.path.str():''''}    '
+endfunction
+
+function! s:apply_active_statusline()
+  call s:StatuslineStart()
+  if &ft == 'nerdtree'
+    call s:AddTab("StatuslineRed", s:statusline_nerd_tree(), 'left')
+    call s:AddTab("StatuslineWarmgrey", '', 'center')
   else
-    return '-- NO GIT --'
+    call s:AddTab("StatuslinePurple", s:mode_content(), 'left')
+    call s:AddTab("StatuslineBlue", s:git_content(), 'left')
+    call s:AddTab("StatusLineWarmgrey", '  %f%y%M%R  ', 'center')
+    call s:AddTab("StatusLineRed", ' %c  [ %l/%L ] ', 'right')
   endif
+  call s:StatuslineEnd()
 endfunction
 
+function! s:apply_inactive_statusline()
+  call s:StatuslineStart()
+  if &ft == 'nerdtree'
+    call s:AddTab("StatuslineWarmgrey", s:statusline_nerd_tree(), 'left')
+    call s:AddTab("StatuslineBlack", '', 'center')
+  else
+    if &modified
+      call s:AddTab("StatusLineRed", '  %f%y%M%R  ', 'center')
+      call s:AddTab("StatusLineRed", '', 'left')
+    else
+      call s:AddTab("StatusLineBlack", '  %f%y%M%R  ', 'center')
+      call s:AddTab("StatusLineBlack", '', 'left')
+    endif
+  endif
+  call s:StatuslineEnd()
+endfunction
 
 augroup StatuslineActive
   autocmd!
@@ -18,101 +114,20 @@ augroup StatuslineActive
   autocmd WinLeave * call <SID>apply_inactive_statusline() " inactive
 augroup END
 
-function! s:apply_inactive_statusline(...) abort 
-  execute ':setlocal statusline=' .  substitute(s:Inactive_sl(), ' ', '\\ ', "g")
-endfun
-
-function! s:apply_active_statusline(...) abort 
-  execute ':setlocal statusline=' .  substitute(s:Active_sl(), ' ', '\\ ', "g")
-endfun
-
-function! StatuslineMode()
-  let l:sl = ''
-  let l:sl .= '%#StatusLinePurple#%{(mode()==''n'')?''  NORMAL  '':''''}' 
-  let l:sl .= '%#StatusLinePurpleBlue#%{(mode()==''n'')?'''':''''}' 
-" 
-  let l:sl .= '%#StatusLineWhite#%{(mode()==''i'')?''  INSERT  '':''''}'
-  let l:sl .= '%#StatusLineWhiteBlue#%{(mode()==''i'')?'''':''''}' 
-" 
-  let l:sl .= '%#StatusLinePink#%{(mode()==''v'')?''  VISUAL  '':''''}'
-  let l:sl .= '%#StatusLinePinkBlue#%{(mode()==''v'')?'''':''''}' 
-" 
-  let l:sl .= '%#StatusLineBlack#%{(mode()==''c'')?''  COMMAND  '':''''}'
-  let l:sl .= '%#StatusLineBlackBlue#%{(mode()==''c'')?'''':''''}' 
-" 
-
-  " %#StatusLineBlackBlue#' 
-  " if l:currentMode == 'n'
-  "   let l:sl = '%#StatusLinePurple#'
-  "   let l:sl .= ' NORMAL '
-  " if l:currentMode == 'i'
-  "   let l:sl .= '%#StatusLineWhite#'
-  "   let l:sl .= ' INSERT '
-  " elseif l:currentMode == 'v'
-  "   let l:sl .= '%#StatusLinePink#'
-  "   let l:sl .= ' VISUAL '
-  " elseif l:currentMode == 'c'
-  "   let l:sl .= '%#StatusLineBlack#'
-  "   let l:sl .= ' COMMAND '
-  " else
-  "   let l:sl .= '%#StatusLineBlue#'
-  " endif
-  " let l:sl .= '%#StatusLinePurpleBlue#'
-  return l:sl
+function! s:mode_content()
+  let res = ''
+  let res .= '%{(mode()==''n'')?''  NORMAL  '':''''}' 
+  let res .= '%{(mode()==''i'')?''  INSERT  '':''''}'
+  let res .= '%{(mode()==''v'')?''  VISUAL  '':''''}'
+  let res .= '%{(mode()==''c'')?''  COMMAND  '':''''}'
+  return res
 endfunction
 
-function! StatuslineModeColor()
-  let l:currentMode = mode()
-  if l:currentMode == 'n'
-    return '%#StatusLinePurple#'
-  elseif l:currentMode == 'i'
-    return '%#StatusLineWhite#'
-  elseif l:currentMode == 'v'
-    return '%#StatusLinePink#'
-  elseif l:currentMode == 'c'
-    return '%#StatusLineBlack#'
-  endif
-endfunction
-
-function! s:Active_sl(...)
-  let l:sl = ''
-  let l:sl .= StatuslineMode()
-  let l:sl .= '%#StatusLineBlue#'
-  let l:sl .= ' '. StatuslineGit() . ' '
-  let l:sl .= '%#StatusLineBlueGreen#'
-  let l:sl .= ''
-  let l:sl .= '%#StatusLineGreen#'
-  let l:sl .= '%='              " Switch to the center
-  let l:sl .= ' %f'               " Path to the file
-  let l:sl .= '%y '              " Filetype
-  let l:sl .= '%M '             " Modified flag
-  let l:sl .= '%R '              " Readonly flag
-  let l:sl .= '%='              " Switch to the right side
-  let l:sl .= '%#StatusLineRedGreen#'
-  let l:sl .= ''
-  let l:sl .= '%#StatusLineRed#'
-  let l:sl .= ' %c '           " Current column
-  let l:sl .= ' [ %l/%L ] '    " Current line / total lines
-  let l:sl .= '%#StatusLineBlack# '
-  return l:sl
-endfunction
-
-function! s:Inactive_sl(...)
-  let l:sl = ''
-  " highlight inactive windows that have modified contents
-  if &modified
-    let l:sl .= '%#StatusLineRed#'
+function! s:git_content()
+  let l:branchname =  system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  if strlen(l:branchname) > 0
+    return '  '.l:branchname.'  '
   else
-    let l:sl .= '%#StatusLineNC#'
+    return '-- NO GIT --'
   endif
-  let l:sl .= '%='              " Switch to the center
-  let l:sl .= ' %f'               " Path to the file
-  let l:sl .= '%y '              " Filetype
-  let l:sl .= '%M '             " Modified flag
-  let l:sl .= '%R '              " Readonly flag
-  let l:sl .= ' %c  '           " Current column
-  let l:sl .= ' [ %l/%L ]'    " Current line / total lines
-  let l:sl .= '%='              " Switch to the right side
-
-  return l:sl
 endfunction

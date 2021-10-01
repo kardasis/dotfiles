@@ -1,4 +1,4 @@
-nnoremap <buffer> <leader>r :!go run %<cr>
+nnoremap <buffer> <leader>rr :GoRun<cr>
 nnoremap <buffer> <leader>dd :GoDoc<cr>
 nnoremap <buffer> <leader>db :GoDocBrowser<cr>
 

@@ -3,8 +3,4 @@ let &packpath = &runtimepath
 
 source ~/.vimrc
 
-" luafile ~/.config/nvim/lua/solargraph-lsp.lua
-
-
-
-
+luafile ~/.config/nvim/lua/mappings.lua

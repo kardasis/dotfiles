@@ -3,11 +3,11 @@ if !has('gui_running') && &t_Co < 256
 endif
 
 if !exists('g:brisket_gui_italic')
-    let g:brisket_gui_italic = 1
+  let g:brisket_gui_italic = 1
 endif
 
 if !exists('g:brisket_term_italic')
-    let g:brisket_term_italic = 0
+  let g:brisket_term_italic = 0
 endif
 
 let g:brisket_termcolors = 256 " does not support 16 color term right now.
@@ -46,18 +46,18 @@ fun! s:h(group, style)
     let l:ctermbg = (has_key(a:style, 'bg') ? a:style.bg.cterm : 'NONE')
   end
   execute 'highlight' a:group
-    \ 'guifg='   (has_key(a:style, 'fg')      ? a:style.fg.gui   : 'NONE')
-    \ 'guibg='   (has_key(a:style, 'bg')      ? a:style.bg.gui   : 'NONE')
-    \ 'guisp='   (has_key(a:style, 'sp')      ? a:style.sp.gui   : 'NONE')
-    \ 'gui='     (!empty(s:guiformat) ? s:guiformat   : 'NONE')
-    \ 'ctermfg=' . l:ctermfg
-    \ 'ctermbg=' . l:ctermbg
-    \ 'cterm='   (!empty(s:ctermformat) ? s:ctermformat   : 'NONE')
+        \ 'guifg='   (has_key(a:style, 'fg')      ? a:style.fg.gui   : 'NONE')
+        \ 'guibg='   (has_key(a:style, 'bg')      ? a:style.bg.gui   : 'NONE')
+        \ 'guisp='   (has_key(a:style, 'sp')      ? a:style.sp.gui   : 'NONE')
+        \ 'gui='     (!empty(s:guiformat) ? s:guiformat   : 'NONE')
+        \ 'ctermfg=' . l:ctermfg
+        \ 'ctermbg=' . l:ctermbg
+        \ 'cterm='   (!empty(s:ctermformat) ? s:ctermformat   : 'NONE')
 endfunction
 
 " Expose the more complicated style setting via a global function
 fun! g:SublimeMonokaiHighlight(group, style)
-	return s:h(a:group, a:style)
+  return s:h(a:group, a:style)
 endfun
 
 " Palette
@@ -65,8 +65,8 @@ endfun
 " Convenience function to have a convenient script variable name and an
 " namespaced global variable
 fun! s:create_palette_color(color_name, color_data)
-	exec 'let s:' . a:color_name . ' = a:color_data'
-	exec 'let g:brisket_' . a:color_name . ' = a:color_data'
+  exec 'let s:' . a:color_name . ' = a:color_data'
+  exec 'let g:brisket_' . a:color_name . ' = a:color_data'
 endf
 
 call s:create_palette_color('brightwhite', { 'gui': '#FFFFFF', 'cterm': '231' })
@@ -163,27 +163,20 @@ call s:h('VertSplit',    { 'fg': s:darkgrey,    'bg': s:darkgrey                
 call s:h('Visual',       { 'fg': s:black,        'bg': s:pink                              })
 hi! link WarningMsg SublimeRed
 
-call s:h('StatusLine',   { 'fg': s:black,       'bg': s:warmgrey                               })
+call s:h('StatusLine',   { 'fg': s:white,       'bg': s:darkgrey                               })
 call s:h('StatusLineNC', { 'fg': s:white,       'bg': s:warmgrey                           })
-call s:h('User1', { 'fg': s:green,       'bg': s:white                           })
-" call s:h('User1NC', { 'fg': s:green,       'bg': s:yellow                           })
 
-call s:h('StatusLineRed',   { 'fg': s:black, 'bg': s:red                              })
-call s:h('StatusLineBlue',   { 'fg': s:black, 'bg': s:blue                              })
-call s:h('StatusLineBlueGreen',   { 'fg': s:blue, 'bg': s:green                              })
-call s:h('StatusLineGreen',   { 'fg': s:black, 'bg': s:green                              })
-call s:h('StatusLineGreenRed',   { 'fg': s:green, 'bg': s:red                              })
-call s:h('StatusLineRedGreen',   { 'fg': s:red, 'bg': s:green                              })
-call s:h('StatusLineYellow',   { 'fg': s:black, 'bg': s:yellow                              })
-call s:h('StatusLinePurple',   { 'fg': s:black, 'bg': s:purple                              })
+" create all the highlight groups for statusline
+let s:sl_colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple', 'White', 'Pink', 'Aqua']
+for bg in s:sl_colors
+  exec 'call s:h(''StatusLine''.bg,   { ''fg'': s:black, ''bg'': s:'.tolower(bg).'})'
+endfor
+" override black to have a white fg
 call s:h('StatusLineBlack',   { 'fg': s:white, 'bg': s:black                              })
-call s:h('StatusLineWhite',   { 'fg': s:black, 'bg': s:white                              })
-call s:h('StatusLinePink',   { 'fg': s:black, 'bg': s:pink                              })
+call s:h('StatusLineWarmgrey',   { 'fg': s:white, 'bg': s:warmgrey                              })
+call s:h('StatusLineLightblack',   { 'fg': s:white, 'bg': s:lightblack                              })
 
-call s:h('StatusLinePurpleBlue',   { 'fg': s:purple, 'bg': s:blue                              })
-call s:h('StatusLineWhiteBlue',   { 'fg': s:white, 'bg': s:blue                              })
-call s:h('StatusLinePinkBlue',   { 'fg': s:pink, 'bg': s:blue                              })
-call s:h('StatusLineBlackBlue',   { 'fg': s:black, 'bg': s:blue                              })
+call s:h('SL_Normal',   { 'fg': s:black, 'bg': s:purple                              })
 
 " Generic Syntax Highlighting (see reference: 'NAMING CONVENTIONS' at http://vimdoc.sourceforge.net/htmldoc/syntax.html#group-name)
 

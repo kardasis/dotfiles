@@ -26,13 +26,13 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
-" Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/argtextobj.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kana/vim-textobj-user'
 Plugin 'dense-analysis/ale'
+Plugin 'fatih/vim-go'
 
 " neovim pulgins {{{
 if has('nvim')
