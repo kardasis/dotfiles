@@ -1,4 +1,4 @@
-nnoremap <buffer> <leader>r :call Run()<cr>
+nnoremap <buffer> <leader>rr :call Run()<cr>
 function! Run()
   if filereadable(expand("./Pipfile"))
     :execute '!pipenv run python' shellescape(@%, 1)
